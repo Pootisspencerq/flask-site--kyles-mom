@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% include 'alerts.html' %}
+{% block title %}
+<title>нова стаття</title>
+{% endblock title %}
+{% block content %}
+<main class="container">
+
+    <h1>нова стаття</h1>
+    {% include 'alerts.html' %}
+    <form action="" method="post" enctype="multipart/form-data"> 
+        <div class="mb-3">
+            <label for="articleTitle" class="form-label">назва статті</label>
+            <input required name ="title" type="text" class="form-control" id="articleTitle" placeholder="Введіть назву">
+        </div>
+        
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Введіть текст</label>
+            <textarea required name ="content" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="formFile" class="form-label">закрепіть файл до статті</label>
+            <input required name ="image" class="form-control" type="file" id="formFile">
+        </div>
+        <select reguired name= "category" class="form-select" aria-label="Default select example">
+            <option selected>виберіть категорію</option>
+            {% for category in categories%}
+                
+            <option value="{{category[0]}}">{{category[1]}}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit" class="btn  btn-lg btn-primary">зберегти</button>
+
+    </form>
+
+    </main>
+
+    {% endblock %}
