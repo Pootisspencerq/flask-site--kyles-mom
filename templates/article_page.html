@@ -4,13 +4,13 @@
 {% endblock title %}
 {% block content %}
 <main class="container">
-  <h1 class="mt-5">{{ article[1] }}</h1>
-  <div>
-  <img src="{{ url_for('static', filename='pic/' + article[3]) }}" class="img-fluid card-img-top" alt="...">
-  </div>
-  {% for p in article[2].split("\n") %}
-  <p>{{ p }}</p>
-  {% endfor %}
-
+    <h1 class="mt-5">{{ article[1] }}</h1>
+    <div>
+        <img src="{{ url_for('static', filename='pic/' + article[3]) }}" class="img-fluid card-img-top" alt="{{ article[1] }}">
+    </div>
+    {% for p in article[2].split("\n") %}
+    <p>{{ p }}</p>
+    {% endfor %}
+    <a href="{{ url_for('index') }}" class="btn btn-secondary mt-3">Повернутись до статей</a>
 </main>
 {% endblock content %}
