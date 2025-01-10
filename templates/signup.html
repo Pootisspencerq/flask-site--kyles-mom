@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<main class="container">
+  <h1>Реєстрація</h1>
+  <form method="POST">
+    <div class="mb-3">
+      <label for="username" class="form-label">Ім'я користувача</label>
+      <input type="text" class="form-control" id="username" name="username" required placeholder="Введіть ім'я користувача">
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Пароль</label>
+      <input type="password" class="form-control" id="password" name="password" required placeholder="Введіть пароль">
+    </div>
+    <div class="mb-3">
+      <label for="confirm_password" class="form-label">Підтвердження паролю</label>
+      <input type="password" class="form-control" id="confirm_password" name="confirm_password" required placeholder="Підтвердіть пароль">
+    </div>
+    <button type="submit" class="btn btn-primary">Зареєструватися</button>
+  </form>
+  <p class="mt-3">Вже маєте акаунт? <a href="{{ url_for('login') }}">Увійти</a></p>
+</main>
+{% endblock %}

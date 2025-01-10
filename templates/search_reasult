@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Результати пошуку</title>
+{% endblock title %}
+
+{% block content %}
+<main class="container">
+  <h1 class="mt-5">Результати пошуку</h1>
+
+  {% if articles %}
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      {% for article in articles %}
+        <div class="col">
+          <div class="card">
+            <img src="{{ url_for('static', filename='pic/' + article[3]) }}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{ article[1] }}</h5>
+              <p class="card-text">{{ article[4] }}</p>
+              <a class="btn btn-primary stretched-link" href="{{ url_for('article_page', article_id=article[0]) }}" role="button">ЧИТАТИ</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    <div class="d-flex justify-content-between">
+      {% if current_page > 1 %}
+        <a href="{{ url_for('search', query=request.args.get('query'), sort=request.args.get('sort', 'date'), page=current_page - 1) }}" class="btn btn-secondary">Попередня</a>
+      {% endif %}
+      <span>Сторінка {{ current_page }} з {{ last_page }}</span>
+      {% if current_page < last_page %}
+        <a href="{{ url_for('search', query=request.args.get('query'), sort=request.args.get('sort', 'date'), page=current_page + 1) }}" class="btn btn-secondary">Наступна</a>
+      {% endif %}
+    </div>
+  {% else %}
+    <p>Нічого не знайдено</p>
+  {% endif %}
+</main>
+{% endblock content %}
